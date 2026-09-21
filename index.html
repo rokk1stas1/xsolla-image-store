@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Картинки · Xsolla Image Store</title>
+  <meta name="description" content="Демо-магазин картинок на Xsolla: Store API, Login, Pay Station (sandbox).">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236e7bf7'/%3E%3Ccircle cx='24' cy='26' r='7' fill='%23fff'/%3E%3Cpath d='M10 50l14-16 10 11 8-8 12 13z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/">
+      <svg class="brand-logo" width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#6e7bf7"/><circle cx="24" cy="26" r="7" fill="#fff"/><path d="M10 50l14-16 10 11 8-8 12 13z" fill="#fff"/></svg>
+      <span class="brand-name">Картинки</span>
+      <span class="badge badge-env" id="env-badge">sandbox</span>
+    </a>
+    <nav class="nav">
+      <a href="#/" data-route="store">Витрина</a>
+      <a href="#/profile" data-route="profile">Профиль</a>
+      <a href="#/quest" data-route="quest">Квест</a>
+    </nav>
+    <div class="auth-area" id="auth-area">
+      <button class="btn btn-primary" id="btn-login">Войти</button>
+    </div>
+  </header>
+
+  <main id="app" class="container">
+    <div class="loading">Загрузка…</div>
+  </main>
+
+  <footer class="footer">
+    <span>Демо-магазин на <a href="https://developers.xsolla.com/" target="_blank" rel="noopener">Xsolla</a>: Store API · Login · Pay Station (sandbox)</span>
+    <span id="footer-project"></span>
+    <a href="https://github.com/rokk1stas1/xsolla-image-store" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+
+  <!-- Модальное окно авторизации -->
+  <div class="modal" id="auth-modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <button class="modal-close" data-close aria-label="Закрыть">×</button>
+      <h2 id="auth-title">Вход в аккаунт</h2>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="login">Войти</button>
+        <button class="tab" data-tab="register">Регистрация</button>
+        <button class="tab" data-tab="guest">Гость</button>
+      </div>
+
+      <form class="tab-panel" data-panel="login" id="form-login">
+        <label>Логин или e-mail<input name="username" autocomplete="username" required></label>
+        <label>Пароль<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="btn btn-primary btn-block" type="submit">Войти</button>
+      </form>
+
+      <form class="tab-panel" data-panel="register" id="form-register" hidden>
+        <label>Имя пользователя<input name="username" autocomplete="username" required minlength="3"></label>
+        <label>E-mail<input name="email" type="email" autocomplete="email" required></label>
+        <label>Пароль<input name="password" type="password" autocomplete="new-password" required minlength="6"></label>
+        <button class="btn btn-primary btn-block" type="submit">Создать аккаунт</button>
+        <p class="hint">После регистрации Xsolla Login пришлёт письмо для подтверждения e-mail. Войти можно после подтверждения.</p>
+      </form>
+
+      <div class="tab-panel" data-panel="guest" id="panel-guest" hidden>
+        <p>Гостевой вход по ID устройства (Xsolla Login → <em>Auth via device ID</em>). Аккаунт создаётся мгновенно, без e-mail, и привязан к этому браузеру.</p>
+        <button class="btn btn-primary btn-block" id="btn-guest">Войти как гость</button>
+      </div>
+
+      <p class="form-error" id="auth-error" hidden></p>
+      <p class="hint" id="auth-project-hint"></p>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+
+  <script src="./config.js"></script>
+  <script src="./js/util.js"></script>
+  <script src="./js/xsolla.js"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/unlock.js"></script>
+  <script src="./js/payment.js"></script>
+  <script src="./js/views/store.js"></script>
+  <script src="./js/views/profile.js"></script>
+  <script src="./js/views/quest.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
