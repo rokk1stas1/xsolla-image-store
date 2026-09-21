@@ -87,6 +87,14 @@
   через Admin API / серверный токен (kit: `webhooks-impl` — «grant in partner's system»), либо API Xsolla Quests/Reward chains,
   которых в kit'е нет.
 
+## Проверка end-to-end (что реально прошло)
+
+Живой прогон 21.09.2026 на demo-профиле (Store 77640 / Login 026201e3 / client 57), headless Chromium:
+device-auth → JWT → `POST /payment/item/key_1` (`sandbox:true`) → `{token, order_id: 735262705}` →
+`sandbox-secure.xsolla.com/paystation4/?token=…` → карта `4242 4242 4242 4242`, `12/40`, CVV `123` →
+`/paystation4/status/success` («Payment successful», транзакция #2161081258) → `GET /order/735262705` = `done` →
+`GET /user/inventory/items` содержит `key_1` → карточка в разделе «Мои картинки». Скриншоты: `docs/screenshots/`.
+
 ## Сводка
 
 | Требование | Статус | Skill / эндпоинт kit'а | Что не покрыто |

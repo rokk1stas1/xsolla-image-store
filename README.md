@@ -8,6 +8,14 @@
 - Репозиторий: https://github.com/rokk1stas1/xsolla-image-store
 - Анализ покрытия Xsolla AI Kit: [REPORT.md](REPORT.md)
 
+| Витрина | Профиль с купленной картинкой | Pay Station sandbox |
+|---|---|---|
+| ![store](docs/screenshots/store.jpg) | ![profile](docs/screenshots/profile.jpg) | ![paystation](docs/screenshots/paystation-success.jpg) |
+
+**Проверено end-to-end 21.09.2026 (demo-профиль):** гостевой вход → заказ `key_1` (`POST /payment/item`, sandbox) →
+оплата тестовой картой 4242… в Pay Station → заказ #735262705 `done` → `GET /user/inventory/items` вернул `key_1` →
+картинка отображается в профиле.
+
 ## Что умеет
 
 | # | Функция | Как реализовано |
